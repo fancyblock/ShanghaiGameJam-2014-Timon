@@ -12,5 +12,5 @@ public class Rule
     }
 
     public eMoumouType DEST_MOUMOU { get; set; }
-
+     
 }
