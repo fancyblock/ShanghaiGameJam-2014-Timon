@@ -5,6 +5,7 @@ public class UIFodderGen : MonoBehaviour
 {
     // how many fodder be generated each second 
     public float m_speed;
+    public UILabel m_txtStatus;
 
 	void Awake() 
 	{
@@ -31,7 +32,7 @@ public class UIFodderGen : MonoBehaviour
     {
         Debug.Log("[UIFodderGen]: " + type.ToString());
 
-        //TODO 
+        m_txtStatus.text = type.ToString() + "\nin\ndroping!";
     }
 
 }
