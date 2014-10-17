@@ -7,15 +7,12 @@ public class UIFodderGen : MonoBehaviour
     public float m_speed;
     public UILabel m_txtStatus;
 
-	void Awake() 
-	{
-        //TODO
-    }
+    protected bool m_working;
 
 	// Use this for initialization
 	void Start () 
 	{
-		//TODO 
+        m_working = false;
 	}
 	
 	// Update is called once per frame
@@ -35,5 +32,24 @@ public class UIFodderGen : MonoBehaviour
         m_txtStatus.text = type.ToString() + "\nin\ndroping!";
     }
 
+    /// <summary>
+    /// set the fodder gen working or not 
+    /// </summary>
+    public bool WORKING
+    {
+        set
+        {
+            if( value )
+            {
+                //
+            }
+            else
+            {
+                m_txtStatus.text = "none";
+            }
+
+            m_working = value;
+        }
+    }
 }
 

@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour
     public UIToggle[] m_toggleFodder;
     public UIFodderGen m_fodderGen;
     public UICatalogue m_uiCatalogue;
+    public UIClock m_uiClock;
 
     protected eFodderType m_curFodder;
 
@@ -40,6 +41,16 @@ public class GameController : MonoBehaviour
 	{
 		//TODO 
 	}
+
+    /// <summary>
+    /// when a cycle end, calculate which Moumou you got
+    /// </summary>
+    public void onCycleEnd()
+    {
+        m_fodderGen.WORKING = false;
+
+        //TODO 
+    }
 
     /// <summary>
     /// on fodder changed 
@@ -77,6 +88,10 @@ public class GameController : MonoBehaviour
         yield return new WaitForFixedUpdate();
 
         //TODO 
+
+        m_uiClock.Startup();
+        m_fodderGen.WORKING = true;
+        m_fodderGen.SetFodder(m_curFodder);
     }
 
 }

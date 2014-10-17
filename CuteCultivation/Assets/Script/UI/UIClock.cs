@@ -19,8 +19,6 @@ public class UIClock : MonoBehaviour
 	{
         m_timer = 0.0f;
         m_running = false;
-
-        Startup();
 	}
 	
 	// Update is called once per frame
@@ -35,12 +33,10 @@ public class UIClock : MonoBehaviour
             if (m_timer >= m_cycle)
             {
                 m_timer = 0.0f;
-
-                //[TEMP]
                 m_txtTime.text = "STOP";
-                //[TEMP]
-
                 m_running = false;
+
+                GameController.Instance.onCycleEnd();
             }
         }
 	}
