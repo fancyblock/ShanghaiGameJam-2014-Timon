@@ -3,8 +3,6 @@ using System.Collections;
 
 public class GameController : MonoBehaviour 
 {
-    public UIToggle[] m_toggleFodder;
-
     static protected GameController m_instance = null;
 
     /// <summary>
@@ -17,6 +15,11 @@ public class GameController : MonoBehaviour
             return m_instance;
         }
     }
+
+
+    public UIToggle[] m_toggleFodder;
+    public UIFodderGen m_fodderGen;
+    public UICatalogue m_uiCatalogue;
 
     protected eFodderType m_curFodder;
 
@@ -48,10 +51,21 @@ public class GameController : MonoBehaviour
             if( toggle.value )
             {
                 m_curFodder = toggle.GetComponent<Fodder>().m_type;
+                m_fodderGen.SetFodder(m_curFodder);
 
                 break;
             }
         }
+    }
+
+    /// <summary>
+    /// show catalogue 
+    /// </summary>
+    public void onShowCatalogue()
+    {
+        Debug.Log("[GameController]: onShowCatalogue");
+
+        m_uiCatalogue.Show(true);
     }
 
     /// <summary>
