@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Fodder 
+public class Fodder : MonoBehaviour
 {
-    public eFodderType TYPE { get; set; }
+    public eFodderType m_type;
 }

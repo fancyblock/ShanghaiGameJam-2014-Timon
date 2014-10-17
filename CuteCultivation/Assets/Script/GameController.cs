@@ -3,6 +3,8 @@ using System.Collections;
 
 public class GameController : MonoBehaviour 
 {
+    public UIToggle[] m_toggleFodder;
+
     static protected GameController m_instance = null;
 
     /// <summary>
@@ -16,6 +18,8 @@ public class GameController : MonoBehaviour
         }
     }
 
+    protected eFodderType m_curFodder;
+
 	void Awake() 
 	{
         m_instance = this;
@@ -24,7 +28,8 @@ public class GameController : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		//TODO 
+        // start the game 
+        StartCoroutine("startingGame");
 	}
 	
 	// Update is called once per frame
@@ -33,8 +38,31 @@ public class GameController : MonoBehaviour
 		//TODO 
 	}
 
-	void OnDestroy() 
-	{
+    /// <summary>
+    /// on fodder changed 
+    /// </summary>
+    public void onFodderChanged()
+    {
+        foreach( UIToggle toggle in m_toggleFodder )
+        {
+            if( toggle.value )
+            {
+                m_curFodder = toggle.GetComponent<Fodder>().m_type;
+
+                break;
+            }
+        }
+    }
+
+    /// <summary>
+    /// starting the game 
+    /// </summary>
+    /// <returns></returns>
+    protected IEnumerator startingGame()
+    {
+        yield return new WaitForFixedUpdate();
+
         //TODO 
     }
+
 }

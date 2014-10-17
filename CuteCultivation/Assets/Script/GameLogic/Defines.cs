@@ -24,6 +24,7 @@ public enum eMoumouType
 public enum eFodderType
 {
     eFodderType01 = 0,
-    //TODO 
+    eFodderType02,
+    eFodderType03,
     eFodderTypeMax
 };

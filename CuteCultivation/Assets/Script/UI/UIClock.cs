@@ -11,7 +11,7 @@ public class UIClock : MonoBehaviour
 
 	void Awake() 
 	{
-        //TODO
+        //TODO 
     }
 
 	// Use this for initialization
@@ -53,6 +53,28 @@ public class UIClock : MonoBehaviour
     {
         m_timer = 0.0f;
         m_running = true;
+    }
+
+    /// <summary>
+    /// if is running or not 
+    /// </summary>
+    public bool IS_RUNNING
+    {
+        get
+        {
+            return m_running;
+        }
+    }
+
+    /// <summary>
+    /// return the current time 
+    /// </summary>
+    public float TIME
+    {
+        get
+        {
+            return m_timer;
+        }
     }
 
 }
