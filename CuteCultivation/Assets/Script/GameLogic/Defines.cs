@@ -6,14 +6,30 @@ public class Defines
     //TODO 
 }
 
+/// <summary>
+/// game status 
+/// </summary>
+public enum eGameStatus
+{
+	eGamePending = 0,
+	eGameRunning,
+	eGameShowResult,
+	eGameEnd
+}
 
 /// <summary>
 /// moumou type enum
 /// </summary>
-public enum eMoumouType
+public enum eMoumouType:int
 {
-    eMoumouType01 = 0,
-    //TODO 
+	eMoumouTypeInit = 0,
+    eMoumouType01,
+    eMoumouType02,
+    eMoumouType03,
+    eMoumouType04,
+    eMoumouType05,
+    eMoumouType06,
+    eMoumouType07,
     eMoumouTypeMax
 };
 
@@ -23,8 +39,8 @@ public enum eMoumouType
 /// </summary>
 public enum eFodderType
 {
-    eFodderType01 = 0,
-    eFodderType02,
-    eFodderType03,
+    eFodderTypeNone = 0,
+    eFodderAAA,
+    eFodderBBB,
     eFodderTypeMax
 };

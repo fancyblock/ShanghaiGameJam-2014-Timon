@@ -4,15 +4,10 @@ using System.Collections;
 public class UIClock : MonoBehaviour 
 {
     public UILabel m_txtTime;
-    public float m_cycle;
+    public float m_cycle;		// the cycle time 
 
     protected float m_timer;
     protected bool m_running;
-
-	void Awake() 
-	{
-        //TODO 
-    }
 
 	// Use this for initialization
 	void Start () 
@@ -26,10 +21,12 @@ public class UIClock : MonoBehaviour
 	{
         if( m_running )
         {
-            m_txtTime.text = ((int)m_timer).ToString();
+			m_txtTime.text = ((int)(CYCLE_PERCENT*100)) + "%";
 
+			// increate the time 
             m_timer += Time.deltaTime;
 
+			// end the Clock 
             if (m_timer >= m_cycle)
             {
                 m_timer = 0.0f;
@@ -58,18 +55,18 @@ public class UIClock : MonoBehaviour
     {
         get
         {
-            return m_running;
+			return m_running;
         }
     }
 
     /// <summary>
     /// return the current time 
     /// </summary>
-    public float TIME
+    public float CYCLE_PERCENT
     {
         get
         {
-            return m_timer;
+			return m_timer / m_cycle;
         }
     }
 

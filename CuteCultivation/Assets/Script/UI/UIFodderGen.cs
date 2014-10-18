@@ -29,7 +29,14 @@ public class UIFodderGen : MonoBehaviour
     {
         Debug.Log("[UIFodderGen]: " + type.ToString());
 
-        m_txtStatus.text = type.ToString() + "\nin\ndroping!";
+		if( type == eFodderType.eFodderTypeNone )
+		{
+			m_txtStatus.text = "None";
+		}
+		else
+		{
+			m_txtStatus.text = type.ToString() + "\nin\ndroping!";
+		}
     }
 
     /// <summary>

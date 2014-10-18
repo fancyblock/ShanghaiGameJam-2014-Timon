@@ -13,6 +13,12 @@ public class Catalogue
     public Catalogue()
     {
         m_itemList = new List<CatalogueItem>();
+
+		for( int i = (int)eMoumouType.eMoumouTypeInit; i < (int)eMoumouType.eMoumouTypeMax; i++ )
+		{
+			m_itemList.Add( new CatalogueItem( (eMoumouType)i, false ) );
+		}
+		MakeAsOwned( eMoumouType.eMoumouTypeInit );
     }
 
     /// <summary>
@@ -33,7 +39,13 @@ public class Catalogue
     /// <returns></returns>
     public bool IsOwned( eMoumouType type )
     {
-        //TODO 
+        foreach( CatalogueItem item in m_itemList )
+		{
+			if( item.MOUMOU_TYPE == type )
+			{
+				return item.IS_OWNED;
+			}
+		}
 
         return false;
     }
@@ -44,7 +56,30 @@ public class Catalogue
     /// <param name="type"></param>
     public void MakeAsOwned( eMoumouType type )
     {
-        //TODO 
+        foreach( CatalogueItem item in m_itemList )
+		{
+			if( item.MOUMOU_TYPE == type )
+			{
+				item.IS_OWNED = true;
+			}
+		}
     }
+
+	/// <summary>
+	/// is collect done or not 
+	/// </summary>
+	/// <returns><c>true</c> if this instance is collect done; otherwise, <c>false</c>.</returns>
+	public bool IsCollectDone()
+	{
+		foreach( CatalogueItem item in m_itemList )
+		{
+			if( item.IS_OWNED == false )
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
 
 }

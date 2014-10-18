@@ -12,7 +12,7 @@ public class GlobalWork
     {
         get
         {
-            if( m_instance != null )
+            if( m_instance == null )
             {
                 m_instance = new GlobalWork();
             }
@@ -20,6 +20,13 @@ public class GlobalWork
             return m_instance;
         }
     }
+
+
+	/// <summary>
+	/// Gets or sets the CATALOGU.
+	/// </summary>
+	/// <value>The CATALOGU.</value>
+	public Catalogue CATALOGUE { get; set; }
 
     /// <summary>
     /// constructor 
@@ -33,7 +40,12 @@ public class GlobalWork
     /// </summary>
     public void Init()
     {
-        //TODO 
+		CATALOGUE = new Catalogue();
+
+		// init the catalogue 
+		//TODO 
+
     }
 
 }
+

@@ -19,3 +19,7 @@ CuteCultivation/UnityVS.CuteCultivation.v12.suo
 CuteCultivation/UnityVS.CuteCultivation.CSharp.csproj
 CuteCultivation/UnityVS.CuteCultivation.sln
 CuteCultivation/UnityVS.CuteCultivation.CSharp.Editor.csproj
+CuteCultivation/Temp/
+*.csproj
+*.sln
+*.suo
