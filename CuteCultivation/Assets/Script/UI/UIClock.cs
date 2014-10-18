@@ -10,6 +10,7 @@ public class UIClock : MonoBehaviour
 
     protected float m_timer;
     protected bool m_running;
+	protected bool m_isNoon;
 
 	// Use this for initialization
 	void Start () 
@@ -19,6 +20,51 @@ public class UIClock : MonoBehaviour
 
 		m_bgNight.alpha = 1.0f;
 		m_bgNoon.alpha = 0.0f;
+		m_isNoon = false;
+	}
+
+	protected IEnumerator switchNight()
+	{
+		m_isNoon = false;
+
+		yield return null;
+
+		for( int i = 0; i < 12; i++ )
+		{
+			float alpha = (float)i/12.0f;
+
+			m_bgNight.alpha = alpha;
+			m_bgNoon.alpha = 1.0f - alpha;
+
+			yield return null;
+		}
+
+		m_bgNight.alpha = 1.0f;
+		m_bgNoon.alpha = 0.0f;
+
+
+	}
+
+	protected IEnumerator switchNoon()
+	{
+		m_isNoon = true;
+
+		yield return null;
+
+		for( int i = 0; i < 12; i++ )
+		{
+			float alpha = (float)i/12.0f;
+			
+			m_bgNoon.alpha = alpha;
+			m_bgNight.alpha = 1.0f - alpha;
+
+			yield return null;
+		}
+
+		m_bgNight.alpha = 0.0f;
+		m_bgNoon.alpha = 1.0f;
+
+
 	}
 	
 	// Update is called once per frame
@@ -28,15 +74,19 @@ public class UIClock : MonoBehaviour
         {
 			m_sunmoon.transform.localRotation = Quaternion.Euler( 0.0f, 0.0f, CYCLE_PERCENT * 360.0f );
 
-			if( CYCLE_PERCENT > 0.5f )
+			if( m_isNoon )
 			{
-				m_bgNight.alpha = 0.0f;
-				m_bgNoon.alpha = 1.0f;
+				if( CYCLE_PERCENT < 0.5f )
+				{
+					StartCoroutine( "switchNight" );
+				}
 			}
 			else
 			{
-				m_bgNight.alpha = 1.0f;
-				m_bgNoon.alpha = 0.0f;
+				if( CYCLE_PERCENT >= 0.5f )
+				{
+					StartCoroutine( "switchNoon" );
+				}
 			}
 
 			// increate the time 
@@ -64,6 +114,8 @@ public class UIClock : MonoBehaviour
     {
         m_timer = 0.0f;
         m_running = true;
+
+		m_isNoon = false;
     }
 
     /// <summary>

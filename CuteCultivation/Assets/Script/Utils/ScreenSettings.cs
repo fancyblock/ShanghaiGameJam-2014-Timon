@@ -9,7 +9,7 @@ public class ScreenSettings : MonoBehaviour
 
 	void Awake() 
 	{
-        Screen.SetResolution(m_width, m_height, true, m_fps);
+		Screen.SetResolution(m_width, m_height, false, m_fps);
     }
 
 	// Use this for initialization
