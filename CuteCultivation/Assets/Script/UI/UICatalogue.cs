@@ -3,6 +3,8 @@ using System.Collections;
 
 public class UICatalogue : MonoBehaviour 
 {
+	public UICatalogueItem[] m_catalogueItems;
+
 	void Awake() 
 	{
         //TODO
