@@ -26,6 +26,7 @@ public class GameController : MonoBehaviour
 	public float m_eatFodderTime;
 	public UIMoumou m_moumou;
 	public SePlayer m_sePlayer;
+	public GameObject m_maskPause;
 
     protected eFodderType m_curFodder;
 	protected eGameStatus m_lastStatus;
@@ -50,12 +51,6 @@ public class GameController : MonoBehaviour
 
 		// init the game 
 		m_fodderList = new List<eFodderType>();
-		m_status = eGameStatus.eGamePending;
-		m_curMoumouType = eMoumouType.eMoumouTypeInit;
-		m_timer = 0.0f;
-
-        // start the game 
-        StartCoroutine("startingGame");
 	}
 	
 	// Update is called once per frame
@@ -75,6 +70,19 @@ public class GameController : MonoBehaviour
 					m_fodderList.Add( m_curFodder );
 				}
 			}
+
+			if( m_curFodder != eFodderType.eFodderTypeNone )
+			{
+				m_moumou.PLAY = true;
+			}
+			else
+			{
+				m_moumou.PLAY = false;
+			}
+		}
+		else
+		{
+			m_moumou.PLAY = false;
 		}
 	}
 
@@ -186,21 +194,7 @@ public class GameController : MonoBehaviour
 	/// </summary>
 	public void onHideCatalogue()
 	{
-		resume();
 	}
-
-    /// <summary>
-    /// starting the game 
-    /// </summary>
-    /// <returns></returns>
-    protected IEnumerator startingGame()
-    {
-        yield return new WaitForFixedUpdate();
-
-        //TODO 
-
-		start();
-    }
 
 	/// <summary>
 	/// Cchange to new moumou
@@ -231,7 +225,7 @@ public class GameController : MonoBehaviour
 			// game finish 
 			m_status = eGameStatus.eGameEnd;
 
-			//TODO 
+			showWin();
 		}
 		else
 		{
@@ -243,8 +237,12 @@ public class GameController : MonoBehaviour
 	/// <summary>
 	/// Start droping
 	/// </summary>
-	protected void start()
+	public void start()
 	{
+		m_maskPause.SetActive(false);
+		m_status = eGameStatus.eGamePending;
+		m_curMoumouType = eMoumouType.eMoumouTypeInit;
+
 		m_timer = 0.0f;
 		m_curFodder = eFodderType.eFodderTypeNone;
 		m_fodderList.Clear();
@@ -268,21 +266,13 @@ public class GameController : MonoBehaviour
 	{
 		m_lastStatus = m_status;
 		m_status = eGameStatus.eGamePause;
+		m_fodderGen.WORKING = false;
 
-		if( m_lastStatus == eGameStatus.eGameRunning )
-		{
-			//m_uiClock;
-			m_fodderGen.WORKING = false;
-		}
+		m_maskPause.SetActive(true);
 	}
 
-	/// <summary>
-	/// resume the game
-	/// </summary>
-	protected void resume()
+	protected void showWin()
 	{
-		m_status = m_lastStatus;
-
 		//TODO 
 	}
 
