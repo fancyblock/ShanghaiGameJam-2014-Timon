@@ -213,8 +213,12 @@ public class GameController : MonoBehaviour
 		// player SE
 		m_sePlayer.PlayTransition();
 
-		//TODO 
 		m_moumou.SetMoumou( m_resultMoumouType );
+
+		while( m_moumou.AnimationDone() == false )
+		{
+			yield return new WaitForFixedUpdate();
+		}
 
 		// set as next 
 		m_curMoumouType = m_resultMoumouType;
