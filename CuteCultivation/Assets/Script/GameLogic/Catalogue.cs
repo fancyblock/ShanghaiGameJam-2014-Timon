@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
 
 public class Catalogue 
 {
+	public Action<eMoumouType> CHANGED_CALLBACK { get; set; }
+
     protected List<CatalogueItem> m_itemList;
 
     /// <summary>
@@ -63,7 +66,14 @@ public class Catalogue
 			if( item.MOUMOU_TYPE == type )
 			{
 				item.IS_OWNED = true;
+
+				break;
 			}
+		}
+
+		if( CHANGED_CALLBACK != null )
+		{
+			CHANGED_CALLBACK( type );
 		}
     }
 

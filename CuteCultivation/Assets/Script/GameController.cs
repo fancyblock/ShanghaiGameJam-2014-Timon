@@ -37,14 +37,14 @@ public class GameController : MonoBehaviour
 	void Awake() 
 	{
         m_instance = this;
+
+		// initial 
+		GlobalWork.Instance.Init();
     }
 
 	// Use this for initialization
 	void Start () 
 	{
-		// initial 
-		GlobalWork.Instance.Init();
-
 		// init the game 
 		m_fodderList = new List<eFodderType>();
 		m_status = eGameStatus.eGamePending;
