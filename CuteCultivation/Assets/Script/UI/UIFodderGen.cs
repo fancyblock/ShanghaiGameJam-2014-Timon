@@ -97,7 +97,7 @@ public class UIFodderGen : MonoBehaviour
 			go.transform.localPosition = new Vector3( Random.Range( -70.0f, 70.0f ), 0.0f, 0.0f );
 
 			fodder.m_acce = Random.Range( 0.07f, 0.2f );
-			fodder.m_angleVelocity = Random.Range( 0.3f, 0.8f );
+			fodder.m_angleVelocity = Random.Range( 0.5f, 2.0f );
 		}
 	}
 

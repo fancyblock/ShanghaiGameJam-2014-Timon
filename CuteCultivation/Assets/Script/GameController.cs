@@ -25,6 +25,7 @@ public class GameController : MonoBehaviour
     public UIClock m_uiClock;
 	public float m_eatFodderTime;
 	public UIMoumou m_moumou;
+	public SePlayer m_sePlayer;
 
     protected eFodderType m_curFodder;
 	protected eGameStatus m_status;
@@ -198,6 +199,9 @@ public class GameController : MonoBehaviour
 	{
 		yield return new WaitForFixedUpdate();
 
+		// player SE
+		m_sePlayer.PlayTransition();
+
 		//TODO 
 		m_moumou.SetMoumou( m_resultMoumouType );
 
@@ -211,6 +215,8 @@ public class GameController : MonoBehaviour
 		{
 			// game finish 
 			m_status = eGameStatus.eGameEnd;
+
+			//TODO 
 		}
 		else
 		{
