@@ -84,6 +84,7 @@ public class GameController : MonoBehaviour
     public void onCycleEnd()
     {
         m_fodderGen.WORKING = false;
+		m_moumou.PLAY = false;
 
 		// calculate the result Moumou 
 		eMoumouType resultMoumou = eMoumouType.eMoumouTypeInit;
@@ -251,6 +252,7 @@ public class GameController : MonoBehaviour
 		m_uiClock.Startup();
 		m_fodderGen.WORKING = true;
 		m_fodderGen.SetFodder(m_curFodder);
+		m_moumou.PLAY = true;
 		
 		m_status = eGameStatus.eGameRunning;
 	}
