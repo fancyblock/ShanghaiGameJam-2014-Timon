@@ -3,7 +3,9 @@ using System.Collections;
 
 public class UIClock : MonoBehaviour 
 {
-    public UILabel m_txtTime;
+	public UISprite m_bgNight;
+	public UISprite m_bgNoon;
+	public UISprite m_sunmoon;
     public float m_cycle;		// the cycle time 
 
     protected float m_timer;
@@ -14,6 +16,9 @@ public class UIClock : MonoBehaviour
 	{
         m_timer = 0.0f;
         m_running = false;
+
+		m_bgNight.alpha = 1.0f;
+		m_bgNoon.alpha = 0.0f;
 	}
 	
 	// Update is called once per frame
@@ -21,7 +26,18 @@ public class UIClock : MonoBehaviour
 	{
         if( m_running )
         {
-			m_txtTime.text = ((int)(CYCLE_PERCENT*100)) + "%";
+			m_sunmoon.transform.localRotation = Quaternion.Euler( 0.0f, 0.0f, CYCLE_PERCENT * 360.0f );
+
+			if( CYCLE_PERCENT > 0.5f )
+			{
+				m_bgNight.alpha = 0.0f;
+				m_bgNoon.alpha = 1.0f;
+			}
+			else
+			{
+				m_bgNight.alpha = 1.0f;
+				m_bgNoon.alpha = 0.0f;
+			}
 
 			// increate the time 
             m_timer += Time.deltaTime;
@@ -30,7 +46,9 @@ public class UIClock : MonoBehaviour
             if (m_timer >= m_cycle)
             {
                 m_timer = 0.0f;
-                m_txtTime.text = "STOP";
+				m_sunmoon.transform.localRotation = Quaternion.Euler( 0.0f, 0.0f, 0.0f );
+				m_bgNight.alpha = 1.0f;
+				m_bgNoon.alpha = 0.0f;
                 m_running = false;
 
                 GameController.Instance.onCycleEnd();
