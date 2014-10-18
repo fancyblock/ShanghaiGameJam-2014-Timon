@@ -227,7 +227,9 @@ public class GameController : MonoBehaviour
 		m_timer = 0.0f;
 		m_curFodder = eFodderType.eFodderTypeNone;
 		m_fodderList.Clear();
-		//TODO 
+		m_toggleFodder[0].value = true;
+		m_toggleFodder[1].value = false;
+		m_toggleFodder[2].value = false;
 		m_status = eGameStatus.eGameRunning;
 
 		m_uiClock.Startup();

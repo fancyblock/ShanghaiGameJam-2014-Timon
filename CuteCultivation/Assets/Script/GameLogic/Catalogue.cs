@@ -56,6 +56,8 @@ public class Catalogue
     /// <param name="type"></param>
     public void MakeAsOwned( eMoumouType type )
     {
+		Debug.Log( "[Catalogue]: MakeAsOwned => " + type.ToString() );
+
         foreach( CatalogueItem item in m_itemList )
 		{
 			if( item.MOUMOU_TYPE == type )
