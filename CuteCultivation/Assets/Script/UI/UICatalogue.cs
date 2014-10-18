@@ -1,14 +1,11 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class UICatalogue : MonoBehaviour 
 {
+	public Action ON_HIDE_CALLBACK { get; set; }
 	public UICatalogueItem[] m_catalogueItems;
-
-	void Awake() 
-	{
-        //TODO
-    }
 
 	// Use this for initialization
 	void Start () 
@@ -31,6 +28,11 @@ public class UICatalogue : MonoBehaviour
     public void onBack()
     {
         Show(false);
+
+		if( ON_HIDE_CALLBACK != null )
+		{
+			ON_HIDE_CALLBACK();
+		}
     }
 
     /// <summary>

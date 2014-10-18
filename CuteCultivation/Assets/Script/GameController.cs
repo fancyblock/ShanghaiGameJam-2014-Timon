@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour
 	public SePlayer m_sePlayer;
 
     protected eFodderType m_curFodder;
+	protected eGameStatus m_lastStatus;
 	protected eGameStatus m_status;
 	protected List<eFodderType> m_fodderList;
 	protected float m_timer;
@@ -45,6 +46,8 @@ public class GameController : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		m_uiCatalogue.ON_HIDE_CALLBACK = onHideCatalogue;
+
 		// init the game 
 		m_fodderList = new List<eFodderType>();
 		m_status = eGameStatus.eGamePending;
@@ -173,10 +176,17 @@ public class GameController : MonoBehaviour
     /// </summary>
     public void onShowCatalogue()
     {
-        Debug.Log("[GameController]: onShowCatalogue");
-
+		pause();
         m_uiCatalogue.Show(true);
     }
+
+	/// <summary>
+	/// hide catalogue
+	/// </summary>
+	public void onHideCatalogue()
+	{
+		resume();
+	}
 
     /// <summary>
     /// starting the game 
@@ -243,6 +253,31 @@ public class GameController : MonoBehaviour
 		m_fodderGen.SetFodder(m_curFodder);
 		
 		m_status = eGameStatus.eGameRunning;
+	}
+
+	/// <summary>
+	/// pause the game
+	/// </summary>
+	protected void pause()
+	{
+		m_lastStatus = m_status;
+		m_status = eGameStatus.eGamePause;
+
+		if( m_lastStatus == eGameStatus.eGameRunning )
+		{
+			//m_uiClock;
+			m_fodderGen.WORKING = false;
+		}
+	}
+
+	/// <summary>
+	/// resume the game
+	/// </summary>
+	protected void resume()
+	{
+		m_status = m_lastStatus;
+
+		//TODO 
 	}
 
 }

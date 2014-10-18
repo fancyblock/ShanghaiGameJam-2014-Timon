@@ -13,6 +13,7 @@ public enum eGameStatus
 {
 	eGamePending = 0,
 	eGameRunning,
+	eGamePause,
 	eGameShowResult,
 	eGameEnd
 }
